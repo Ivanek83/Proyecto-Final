@@ -3,6 +3,7 @@ Documentos_de_soporte
 
 # Ignora la carpeta pycache que crea Python al importar módulos
 **/__pycache__/
+***/__pycache__/
 
 
 # Ignora todas las migraciones creadas, excepto __init__.py
