@@ -1,0 +1,83 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+
+{% block content %}    
+<body class="d-flex flex-column h-100 bg-light">
+    <main class="flex-shrink-0">
+        {% include 'home/navbar.html' %}
+        
+        <!-- Planes Section-->
+        <section class="py-5">
+            <div class="container px-5 mb-5">
+                <div class="text-center mb-5">
+                    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Planes de Alimentacion</span></h1>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-11 col-xl-9 col-xxl-8">
+                        
+                        {% if user.is_anonymous %}
+                        <!-- Project Card Para cuando el usuario es ANONIMO-->
+                        <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                            <div class="card-body p-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="p-5">
+                                        <h2 class="fw-bolder">Planes personalizados</h2>
+                                        <p>En esta seccion encontraras planes de alimentacion acorde a tus necesidades caloricas. Nuestros profesionales mantendran tus planes actualizados para que puedas seguirlos cotidianamente!</p>
+                                    </div>
+                                    <img class="img-fluid" src="{% static 'home/assets/plato_anonimo.jpeg' %}" alt="..." />
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        {% if user.is_authenticated and not user.is_staff %}
+                        <!-- Project Card Para cuando el usuario esta LOGUEADO y NO ES STAFF-->
+                        <div class="card overflow-hidden shadow rounded-4 border-0  mb-5">
+                            <div class="card-body p-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="p-5">
+                                        <h2 class="fw-bolder">Mis Planes</h2>
+                                        <p> Te acercamos para esta semana, el plan alimentacion correspondiente a tus necesidades. Podes descargarlo aca abajo y te recordamos que estamos en linea para ayudarte cuando tengas dudas! </p>
+                                        <a class="btn btn-primary" href="{{ user.usuario.archivo.archivos_logueados.url }}" download>Descargar</a>
+                                    </div>
+                                    <img class="img-fluid" src="{% static 'home/assets/plato_logueado.avif' %}" alt="..."  style="max-width: 400px; max-height: 400px; width: auto; height: auto;" />
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if user.is_staff %}
+                        <!-- Project Card Para cuando el usuario es parte del STAFF-->
+                        <div class="card overflow-hidden shadow rounded-4 border-0  mb-5">
+                            <div class="card-body p-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="p-5">
+                                        <h2 class="fw-bolder">Staff</h2>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius at enim eum illum aperiam placeat esse? Mollitia omnis minima saepe recusandae libero, iste ad asperiores! Explicabo commodi quo itaque! Ipsam!</p>
+                                    </div>
+                                    <img class="img-fluid" src="https://dummyimage.com/300x400/343a40/6c757d" alt="..." />
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to action section-->
+        <section class="py-5 bg-gradient-primary-to-secondary text-white">
+            <div class="container px-5 my-5">
+                <div class="text-center">
+                    <h2 class="display-4 fw-bolder mb-4">Contactanos por Whatsapp!</h2>
+                    <p class="fs-5 text-white-70">Si tenes dudas o queres consultarnos por tu plan, no nudes en escribirnos para que podamos ayudarte en tu proceso.</p>
+                    <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="https://wa.me/5491155555555">Contact me</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    {% include 'home/footer.html' %}
+</body>
+{% endblock content %}

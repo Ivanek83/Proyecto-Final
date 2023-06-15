@@ -1,0 +1,180 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+
+{% block content %}    
+<body class="d-flex flex-column h-100 bg-light">
+
+    <main class="flex-shrink-0">
+        {% include 'home/navbar.html' %}
+        
+        <!-- Page Content-->
+        <div class="container px-5 my-5">
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Tu Tablero de información</span></h1>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-11 col-xl-9 col-xxl-8">
+                    
+                    
+                    {% if user.is_authenticated %}
+                    <!-- Skills Section-->
+                    <section>
+                        <!-- Skillset Card-->
+                        <div class="card shadow border-0 rounded-4 mb-5">
+                            <div class="card-body p-5">
+                                
+                                <!-- Informacion proporcionada por el usuario-->
+                                <div class="mb-5">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-info-lg"></i></div>
+                                        <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">{{nombre}}, esta es tu Informacion Proporcionada</span></h3>
+                                    </div>
+                                    <div class="row row-cols-1 row-cols-md-3 mb-4">
+                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Peso: {{peso}} Kg</div></div>
+                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Altura: {{altura}} mts.</div></div>
+                                        <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Intencion: {{intencion}}</div></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Informacion calculada en base a los datos del usuario-->
+                                <div class="mb-0">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-code-slash"></i></div>
+                                        <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Indices calculados con tu informacion</span></h3>
+                                    </div>
+                                    <div class="row row-cols-1 row-cols-md-3 mb-4">
+                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">IMC: {{imc}}</div></div>
+                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">id_info: {{id_info}}</div></div>
+                                        <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Indice 3</div></div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </section>
+                    {% endif %}
+                    
+                    
+                    {% if user.is_anonymous %}
+                    <!-- Skills Section-->
+                    <section>
+                        <!-- Skillset Card-->
+                        <div class="card shadow border-0 rounded-4 mb-5">
+                            <div class="card-body p-5">
+                                
+                                <!-- Informacion proporcionada por el usuario-->
+                                <div class="mb-5">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-info-lg"></i></div>
+                                        <h4 class="fw-bolder mb-0"><span class="text-gradient d-inline">Informacion para tu seguiemiento</span></h4>
+                                    </div>
+                                    <div class="row row-cols-1 row-cols-md-3 mb-4">
+                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Peso:  Kg</div></div>
+                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Altura:  mts.</div></div>
+                                        <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Intencion: </div></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Informacion calculada en base a los datos del usuario-->
+                                <div class="mb-0">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-code-slash"></i></div>
+                                        <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Indices calculados con tu informacion</span></h3>
+                                    </div>
+                                    <div class="row row-cols-1 row-cols-md-3 mb-4">
+                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">IMC: </div></div>
+                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">id_info:</div></div>
+                                        <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Indice 3</div></div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </section>
+                    {% endif %}
+                    
+                    <!-- Divider-->
+                    <div class="pb-5"></div>
+                    
+                    
+                    <!-- Informacion de los indices-->
+                    <section>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h2 class="text-primary fw-bolder mb-0">Informacion de los indices</h2>
+                            <!-- Download Tu info button-->
+                            <!-- Note: Set the link href target to a PDF file within your project-->
+                            <a class="btn btn-primary px-4 py-3" href="#!">
+                                <div class="d-inline-block bi bi-download me-2"></div>
+                                Download Tu info
+                            </a>
+                        </div>
+                        
+                        <!-- Experience Card 1-->
+                        <div class="card shadow border-0 rounded-4 mb-5">
+                            <div class="card-body p-5">
+                                <div class="row align-items-center gx-5">
+                                    <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                        <div class="bg-light p-4 rounded-4">
+                                            <div class="text-primary fw-bolder mb-2">IMC</div>
+                                            <!-- <div class="small fw-bolder">Web Developer</div> -->
+                                            <div class="small text-muted">Indice de</div>
+                                            <div class="small text-muted">Masa Corporal</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8"><div>El índice de masa corporal (IMC) es una medida utilizada para evaluar el estado nutricional de una persona en relación con su peso y altura. <br> 
+                                        <br>
+                                        Se calcula dividiendo el peso en kilogramos entre el cuadrado de la altura en metros (IMC = peso / altura^2). <br> 
+                                        <br>
+                                        El IMC proporciona una estimación general del grado de adiposidad y se utiliza ampliamente en planes alimentarios como una referencia para evaluar el riesgo de enfermedades relacionadas con el peso, como la obesidad y la desnutrición. <br>
+                                        <br>
+                                        Un IMC bajo puede indicar desnutrición o un peso insuficiente, mientras que un IMC alto puede ser un indicador de sobrepeso u obesidad. <br></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </section>
+                    
+                    
+                    <!-- Informacion de Interes-->
+                    <section>
+                        <h2 class="text-secondary fw-bolder mb-4">Informacion de Interes</h2>
+                        <!-- Card 1-->
+                        <div class="card shadow border-0 rounded-4 mb-5">
+                            <div class="card-body p-5">
+                                <div class="row align-items-center gx-5">
+                                    <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                        <div class="bg-light p-4 rounded-4">
+                                            <div class="text-secondary fw-bolder mb-2">2023</div>
+                                            <div class="mb-2">
+                                                <div class="small fw-bolder">Deportes</div>
+                                                <div class="small text-muted"></div>
+                                            </div>
+                                            <div class="fst-italic">
+                                                <div class="small text-muted">Informacion</div>
+                                                <div class="small text-muted">Adicional para comunicar</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8"><div>Combinar una dieta equilibrada con ejercicio regular ofrece numerosos beneficios para la salud. La práctica de actividad física aumenta el gasto calórico y mejora el metabolismo, lo que puede acelerar la pérdida de peso y la quema de grasa. Además, el ejercicio fortalece los músculos y mejora la composición corporal, lo que contribuye a una apariencia física más tonificada y definida.<br>
+                                    <br>
+                                    Al hacer ejercicio, se estimula la circulación sanguínea y se promueve una mejor entrega de nutrientes y oxígeno a los tejidos, incluyendo los músculos. Esto puede ayudar a aumentar la energía, mejorar el estado de ánimo y reducir el estrés. Además, la actividad física regular tiene efectos positivos en la salud cardiovascular, fortaleciendo el corazón y reduciendo el riesgo de enfermedades cardíacas. <br>
+                                    <br>    
+                                    La combinación de una dieta saludable y ejercicio no solo contribuye a la pérdida de peso, sino que también promueve una mejor salud en general, aumentando la energía, mejorando la resistencia y favoreciendo una mayor calidad de vida. <br>
+                                    </div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include 'home/footer.html' %}
+</body>
+{% endblock content %}
